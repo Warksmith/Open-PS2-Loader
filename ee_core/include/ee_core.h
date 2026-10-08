@@ -73,6 +73,8 @@ enum GAME_MODE {
     BDM_HDD_MODE,
     ETH_MODE,
     HDD_MODE,
+    LUNA_MMCE_MODE,
+    LUNA_UDPFS_MODE,
 };
 
 extern int EnableDebug;

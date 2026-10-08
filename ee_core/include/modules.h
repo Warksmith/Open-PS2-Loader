@@ -36,6 +36,10 @@ enum OPL_MODULE_ID {
     // Special patches
     OPL_MODULE_ID_IOP_PATCH,
 
+    // LUNA file-handle drivers; preserve the upstream module ID ordering.
+    OPL_MODULE_ID_LUNA_MMCEFHI,
+    OPL_MODULE_ID_LUNA_UDPFSFHI,
+    OPL_MODULE_ID_LUNA_MINISTACK,
     OPL_MODULE_ID_COUNT
 };
 

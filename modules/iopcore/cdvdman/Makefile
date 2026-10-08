@@ -1,6 +1,14 @@
 IOP_OBJS = cdvdman.o ioops.o ncmd.o scmd.o searchfile.o streaming.o ioplib_util.o smsutils.o imports.o exports.o ../../isofs/zso.o ../../isofs/lz4.o
 USE_DEV9 ?= 0
 
+ifeq ($(USE_FHI),1)
+IOP_BIN = fhi_cdvdman.irx
+IOP_OBJS_DIR = obj.fhi/
+IOP_OBJS += device-fhi.o
+IOP_CFLAGS += -DFHI_DRIVER
+USE_DEV9 = 1
+endif
+
 ifeq ($(USE_HDD),1)
 IOP_BIN  = hdd_cdvdman.irx
 IOP_OBJS_DIR = obj.hdd/

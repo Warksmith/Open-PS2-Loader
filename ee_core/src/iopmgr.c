@@ -146,6 +146,18 @@ static void ResetIopSpecial(const char *args, unsigned int arglen)
             break;
         case BDM_HDD_MODE:
             break;
+        case LUNA_MMCE_MODE:
+            LoadOPLModule(OPL_MODULE_ID_LUNA_MMCEFHI, 0, 0, NULL);
+            break;
+        case LUNA_UDPFS_MODE: {
+            char stackArgs[20];
+            _strcpy(stackArgs, "ip=");
+            _strcpy(stackArgs + 3, config->g_ps2_ip);
+            LoadOPLModule(OPL_MODULE_ID_SMAP, 0, 0, NULL);
+            LoadOPLModule(OPL_MODULE_ID_LUNA_MINISTACK, 0, strlen(stackArgs) + 1, stackArgs);
+            LoadOPLModule(OPL_MODULE_ID_LUNA_UDPFSFHI, 0, 0, NULL);
+            break;
+        }
     };
 }
 

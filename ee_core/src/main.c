@@ -53,6 +53,10 @@ static int eecoreInit(int argc, char **argv)
         config->GameMode = ETH_MODE;
     else if (!_strncmp(config->GameModeDesc, "HDD_MODE", 8))
         config->GameMode = HDD_MODE;
+    else if (!_strncmp(config->GameModeDesc, "LUNA_MMCE_MODE", 14))
+        config->GameMode = LUNA_MMCE_MODE;
+    else if (!_strncmp(config->GameModeDesc, "LUNA_UDPFS_MODE", 15))
+        config->GameMode = LUNA_UDPFS_MODE;
     DPRINTF("Game Mode = %d %s\n", config->GameMode, config->GameModeDesc);
 
     EnableDebug = config->EnableDebug;

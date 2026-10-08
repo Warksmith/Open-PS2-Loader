@@ -74,6 +74,13 @@ void StartNow(void *param)
         return;
     }
 
+#ifdef LUNA_DRIVER
+    if (!DeviceVmcInit()) {
+        readyToGo = MODULE_NO_RESIDENT_END;
+        return;
+    }
+#endif
+
     /* hooking LOADCORE's RegisterLibraryEntires routine */
     pRegisterLibraryEntires = (PtrRegisterLibraryEntires)HookExportEntry(exp, 6, hookRegisterLibraryEntires);
 

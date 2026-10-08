@@ -74,6 +74,14 @@ I_DeleteThread
 I_DelayThread
 thbase_IMPORTS_end
 
+#ifdef LUNA_DRIVER
+thsemap_IMPORTS_start
+I_CreateSema
+I_WaitSema
+I_SignalSema
+thsemap_IMPORTS_end
+#endif
+
 dmacman_IMPORTS_start
 I_dmac_request
 I_dmac_transfer

@@ -22,6 +22,9 @@
 
 #include "mcemu_utils.h"
 #include "device.h"
+#ifdef LUNA_DRIVER
+#include <usbhdfsd-common.h>
+#endif
 
 #define MODNAME "mcemu"
 
@@ -120,7 +123,17 @@ typedef struct _McImageSpec
 
     int flags;    /* Memory Card Flags */
     McSpec cspec; /* Memory Card Spec */
+#ifdef LUNA_DRIVER
+    u32 transport; /* 0 = mapped BDM, 1 = FHI file handle */
+    u32 frag_count;
+    bd_fragment_t frags[64];
+#endif
 } McImageSpec;
+
+#ifdef LUNA_DRIVER
+_Static_assert(sizeof(McImageSpec) == 792, "LUNA VMC settings ABI changed");
+int DeviceVmcInit(void);
+#endif
 
 /* Descriptor for a virtual memory card */
 typedef struct _MemoryCard

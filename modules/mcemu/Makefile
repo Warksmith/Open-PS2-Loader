@@ -1,5 +1,12 @@
 IOP_OBJS = mcemu.o mcemu_io.o mcemu_sys.o mcemu_var.o mcemu_rpc.o imports.o
 
+ifeq ($(USE_LUNA),1)
+IOP_BIN = luna_mcemu.irx
+IOP_OBJS_DIR = obj.luna/
+IOP_OBJS += device-luna.o
+IOP_CFLAGS += -DLUNA_DRIVER
+endif
+
 ifeq ($(USE_HDD),1)
 IOP_BIN  = hdd_mcemu.irx
 IOP_OBJS_DIR = obj.hdd/

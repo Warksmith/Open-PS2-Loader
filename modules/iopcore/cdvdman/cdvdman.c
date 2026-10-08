@@ -97,9 +97,9 @@ static void oplShutdown(int poff)
 {
     u32 stat;
 
-    DeviceLock();
     if (vmcShutdownCb != NULL)
         vmcShutdownCb();
+    DeviceLock();
     DeviceUnmount();
     if (poff) {
         DeviceStop();

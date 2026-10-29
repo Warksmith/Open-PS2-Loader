@@ -231,6 +231,12 @@ static void IGR_Thread(void *arg)
         // Reset SPU - do it after the IOP reboot, so nothing will compete with the EE for it.
         LoadOPLModule(OPL_MODULE_ID_RESETSPU, 0, 0, NULL);
 
+        // LUNA: return a switched MMCE card to its boot card before MCMAN
+        // probes it, so the launcher or browser boot finds it again.
+        if (config->LunaMmceIgrSlots[0] != '\0')
+            LoadOPLModule(OPL_MODULE_ID_LUNA_MMCEIGR, 0,
+                          sizeof(config->LunaMmceIgrSlots), config->LunaMmceIgrSlots);
+
 #ifdef IGS
         if ((Pad_Data.combo_type == IGR_COMBO_UP) && (config->EnableGSMOp))
             InGameScreenshot();

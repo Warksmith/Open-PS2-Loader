@@ -67,6 +67,10 @@ struct EECoreConfig_t
 
     int EnableGSMOp;
     struct GsmConfig_t GsmConfig;
+
+    // LUNA: mmceigr slot mask ("10" = slot 1, "01" = slot 2) for an MMCE card
+    // switched at launch; empty when no card needs restoring on IGR.
+    char LunaMmceIgrSlots[4];
 };
 
 #define USE_LOCAL_EECORE_CONFIG struct EECoreConfig_t *config = &g_ee_core_config;
